@@ -18,7 +18,7 @@ export default async function handler(
   await scraper.login(username, process.env.TWITTER_PASSWORD!)
 
   const isLoggedIn = await scraper.isLoggedIn()
-
+  console.log('isLoggedIn : ', isLoggedIn)
   const results = await scraper.fetchSearchTweets(
     username,
     20,
