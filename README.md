@@ -127,8 +127,8 @@ const agentMessage = async (tweet: Tweet) => {
 1. Environment Variable Setup
 
 ```env
-NEXT_PUBLIC_SUPABASE_URL=
-NEXT_PUBLIC_SUPABASE_ANON_KEY=
+SUPABASE_URL=
+SUPABASE_ANON_KEY=
 
 CRON_SECRET=
 X_API_KEY=
@@ -206,14 +206,28 @@ export default async function handler(
 
 1. AI Model Enhancement
 
-   - Pattern learning through conversation analysis
-   - Improvement of personalized consultation quality
+   - Intent and category classification for diverse user queries
+   - Advanced pattern recognition in conversation analysis
+   - Enhanced personalized consultation based on query categories
+   - Improved context understanding and response generation
 
-2. Data Analysis Enhancement
+2. Data Processing Enhancement
 
-   - User feedback collection and analysis
-   - Development of consultation quality metrics
+   - Automatic birth time conversion to Tokyo timezone
+   - Enhanced data validation and normalization
+   - Sophisticated user data preprocessing pipeline
+   - Improved error handling for date-time conversions
 
-3. Service Expansion
-   - Support for various social media platforms
-   - API service consideration
+3. Fortune-Telling Logic Improvement
+
+   - Category-specific Saju analysis algorithms
+   - Enhanced accuracy in fortune interpretations
+   - Specialized response templates for different query types
+   - Integration of multiple fortune-telling methodologies
+
+4. System Optimization
+
+   - Performance optimization for real-time responses
+   - Enhanced data security and privacy measures
+   - Scalable architecture for increased user base
+   - Improved monitoring and logging systems
