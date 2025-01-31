@@ -115,7 +115,7 @@ async function sendSplitTweets(
 
       const tweetResult = body.data.create_tweet.tweet_results.result
       previousTweetId = tweetResult.rest_id
-      await new Promise((resolve) => setTimeout(resolve, 5000))
+      await new Promise((resolve) => setTimeout(resolve, 300))
 
       if (result.status !== 200) {
         return { status: result.status }

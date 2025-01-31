@@ -1,10 +1,34 @@
-import { StringOutputParser } from '@langchain/core/output_parsers'
+import {
+  JsonOutputParser,
+  StringOutputParser,
+} from '@langchain/core/output_parsers'
 import { ChatPromptTemplate } from '@langchain/core/prompts'
 
 import { model } from '@/agnets/helper'
 import { SajuType } from '@/agnets/types'
 
-const fortuneTemplate = `You are Diin, a professional fortune teller. Please analyze the following saju (Four Pillars) information and provide advice for the concern:
+const COLLECT_INFO_PROMPT = `You are Diin, an assistant that helps people based on Saju (Four Pillars of Destiny).
+
+Ask them what kind of help they need.
+
+Required information: concern
+
+Continue the conversation naturally while gathering the necessary details.
+Please write a text within 200 characters.`
+const PARSE_RESPONSE_PROMPT = `Extract information from the user's response:
+Response: {userResponse}
+Information to find: concern
+
+Output in JSON format:
+Example:
+{{
+  "concern": "I want to know my fortune"
+}}
+
+Do not collect data that the user has not provided.
+Exclude any information that cannot be found.`
+
+const FORTUNE_PROMPT = `You are Diin, a professional fortune teller. Please analyze the following saju (Four Pillars) information and provide advice for the concern:
 
 - Birth Information
 Date of Birth: {birthDate}
@@ -31,30 +55,58 @@ Please include the following in your response without numbering, in natural sent
 Please keep the response short, concise, and in plain text format.
 Write in simple sentences without HTML or styling.`
 
+interface ParsedResponse {
+  concern?: string
+}
+
+const parseUserResponse = async (
+  userMessage: string,
+): Promise<ParsedResponse> => {
+  const parsePrompt = ChatPromptTemplate.fromTemplate(PARSE_RESPONSE_PROMPT)
+  return parsePrompt
+    .pipe(model)
+    .pipe(new JsonOutputParser<ParsedResponse>())
+    .invoke({
+      userResponse: userMessage,
+    })
+}
+
+const getQuestionContext = async () => {
+  const collectPrompt = ChatPromptTemplate.fromTemplate(COLLECT_INFO_PROMPT)
+  return collectPrompt.pipe(model).pipe(new StringOutputParser()).invoke({})
+}
+
 export const fortuneTelling = async (
   saju: SajuType,
   userMessage: string,
 ): Promise<string> => {
-  // 사주 분석 체인 생성
-  const prompt = ChatPromptTemplate.fromTemplate(fortuneTemplate)
-  const chain = prompt.pipe(model).pipe(new StringOutputParser())
-  // 결과 출력 및 저장
-  const result = await chain.invoke({
-    birthDate: saju.birth_date,
-    birthTime: saju.birth_time,
-    gender: saju.gender,
-    sajuYear: `${saju.year_stem} ${saju.year_branch}`,
-    sajuMonth: `${saju.month_stem} ${saju.month_branch}`,
-    sajuDay: `${saju.day_stem} ${saju.day_branch}`,
-    sajuHour: `${saju.time_stem} ${saju.time_branch}`,
-    sajuOheng: `fire : ${saju.element_fire}, earth : ${saju.element_earth}, metal : ${saju.element_metal}, water : ${saju.element_water}, wood : ${saju.element_wood}`,
-    saju10sinYear: `${saju.ten_sin_year}`,
-    saju10sinMonth: `${saju.ten_sin_month}`,
-    saju10sinDay: `${saju.ten_sin_day}`,
-    saju10sinHour: `${saju.ten_sin_time}`,
-    sajuDaewon: saju.dae_won,
-    concern: userMessage,
-  })
+  const parsedResponse = await parseUserResponse(userMessage)
+  let result = ''
+  console.log(parsedResponse)
+  if (parsedResponse?.concern) {
+    // 사주 분석 체인 생성
+    const prompt = ChatPromptTemplate.fromTemplate(FORTUNE_PROMPT)
+    const chain = prompt.pipe(model).pipe(new StringOutputParser())
+    // 결과 출력 및 저장
+    result = await chain.invoke({
+      birthDate: saju.birth_date,
+      birthTime: saju.birth_time,
+      gender: saju.gender,
+      sajuYear: `${saju.year_stem} ${saju.year_branch}`,
+      sajuMonth: `${saju.month_stem} ${saju.month_branch}`,
+      sajuDay: `${saju.day_stem} ${saju.day_branch}`,
+      sajuHour: `${saju.time_stem} ${saju.time_branch}`,
+      sajuOheng: `fire : ${saju.element_fire}, earth : ${saju.element_earth}, metal : ${saju.element_metal}, water : ${saju.element_water}, wood : ${saju.element_wood}`,
+      saju10sinYear: `${saju.ten_sin_year}`,
+      saju10sinMonth: `${saju.ten_sin_month}`,
+      saju10sinDay: `${saju.ten_sin_day}`,
+      saju10sinHour: `${saju.ten_sin_time}`,
+      sajuDaewon: saju.dae_won,
+      concern: userMessage,
+    })
+  } else {
+    result = await getQuestionContext()
+  }
 
   return result
 }
