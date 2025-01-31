@@ -1,13 +1,8 @@
 {
-  "functions": {
-    "api/twitter/cron-job.ts": {
-      "runtime": "edge"
-    }
-  },
   "crons": [
     {
       "path": "/api/twitter/cron-job",
-      "schedule": "*/2 * * * *"
+      "schedule": "*/5 * * * *"
     }
   ]
 }

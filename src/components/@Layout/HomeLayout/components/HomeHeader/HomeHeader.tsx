@@ -4,22 +4,17 @@ import {
   Container,
   ContainerProps,
   HStack,
-  IconButton,
   Spinner,
 } from '@chakra-ui/react'
-import { useDisclosure } from '@chakra-ui/react'
 
-import { LogoIcon, MenuIcon } from 'generated/icons/MyIcons'
+import { LogoIcon } from 'generated/icons/MyIcons'
 
 import ClientOnly from '@/components/ClientOnly'
 import { ROUTES } from '@/generated/path/routes'
 import { useAuth } from '@/hooks/useAuth'
 import { useLocalStorage } from '@/stores/local/state'
 
-import HomeHeaderDrawer from './components/HomeHeaderDrawer'
-
 const HomeHeader = ({ ...props }: ContainerProps) => {
-  const { isOpen, onClose, onOpen } = useDisclosure()
   const { isLogin } = useAuth()
   const resetToken = useLocalStorage((store) => store.reset)
 
@@ -54,17 +49,7 @@ const HomeHeader = ({ ...props }: ContainerProps) => {
             </Link>
           }
         </ClientOnly>
-        <IconButton //
-          size={'xs'}
-          icon={<MenuIcon w="24px" h="24px" color={'content.1'} />}
-          onClick={onOpen}
-          cursor="pointer"
-          bg="transparent"
-          aria-label="btn-toggle-drawer"
-        />
       </HStack>
-
-      <HomeHeaderDrawer isOpen={isOpen} onClose={onClose} />
     </Container>
   )
 }

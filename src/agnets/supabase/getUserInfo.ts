@@ -33,7 +33,6 @@ const getUserInfo = async (tweet: Tweet) => {
       threads: threadsData,
     }
   } else {
-    // 사용자가 없는 경우 새로 생성
     const { data: newUser, error: insertError } = await supabase
       .from('users')
       .insert([
@@ -62,7 +61,7 @@ const getUserInfo = async (tweet: Tweet) => {
       .single()
 
     if (threadError) {
-      console.error('스레드 생성 중 오류:', threadError)
+      console.error('threadError : ', threadError)
       throw threadError
     }
 

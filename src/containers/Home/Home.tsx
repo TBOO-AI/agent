@@ -8,7 +8,7 @@ function Home() {
         textStyle={'pre-heading-01'}
         textAlign={'center'}
       >
-        TOKTOKHAN.DEV
+        TBOO
       </Text>
       <Text color={'content.1'} textStyle={'pre-heading-02'}>
         Next page template

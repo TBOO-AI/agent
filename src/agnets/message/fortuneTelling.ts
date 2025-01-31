@@ -4,32 +4,32 @@ import { ChatPromptTemplate } from '@langchain/core/prompts'
 import { model } from '@/agnets/helper'
 import { SajuType } from '@/agnets/types'
 
-const fortuneTemplate = `당신은 전문 사주상담가 Diin 입니다. 다음 정보를 바탕으로 사주를 분석하고 고민에 대한 답변을 해주세요:
+const fortuneTemplate = `You are Diin, a professional fortune teller. Please analyze the following saju (Four Pillars) information and provide advice for the concern:
 
-- 출생정보
-생년월일: {birthDate}
-태어난 시간: {birthTime}
-성별: {gender}
-- 사주팔자
-연간/연지: {sajuYear}
-월간/월지: {sajuMonth}
-일간/일지: {sajuDay}
-시간/시지: {sajuHour}
-- 오행: {sajuOheng}
-- 십신
-연주 : {saju10sinYear}
-월주 : {saju10sinMonth}
-일주 : {saju10sinDay}
-시주 : {saju10sinHour}
-- 대운 : {sajuDaewon}년 단위로 변화하는 운
-- 고민 : {concern}
+- Birth Information
+Date of Birth: {birthDate}
+Birth Time: {birthTime}
+Gender: {gender}
+- Four Pillars
+Year Pillar: {sajuYear}
+Month Pillar: {sajuMonth}
+Day Pillar: {sajuDay}
+Hour Pillar: {sajuHour}
+- Five Elements: {sajuOheng}
+- Ten Gods
+Year: {saju10sinYear}
+Month: {saju10sinMonth}
+Day: {saju10sinDay}
+Hour: {saju10sinHour}
+- Major Fortune Cycle: Changes in {sajuDaewon}-year cycles
+- Concern: {concern}
 
-답변 시 다음 내용을 포함해주시되, 번호 매김 없이 자연스러운 문장으로 작성해주세요:
-- 사주를 바탕으로 한 기본 성향 분석
-- 고민에 대해서 기타 정보와 성향을 바탕으로 한 해석
-- 조언과 해결방안
-답변은 짧고 간결하게 그리고 평문 형태로 순수 텍스트로만 작성해 주세요.
-HTML이나 스타일링 없이 간단한 문장으로 작성해 주세요.`
+Please include the following in your response without numbering, in natural sentences:
+- Basic personality analysis based on the Four Pillars
+- Interpretation of the concern based on other information and personality traits
+- Advice and solutions
+Please keep the response short, concise, and in plain text format.
+Write in simple sentences without HTML or styling.`
 
 export const fortuneTelling = async (
   saju: SajuType,
