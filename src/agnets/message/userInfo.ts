@@ -9,12 +9,14 @@ import { SajuType } from '@/agnets/types'
 import { getMissingFields, getSajuCalendar } from '@/agnets/utils'
 import { supabase } from '@/configs/supabase'
 
-const COLLECT_INFO_PROMPT = `You are a friendly receptionist for saju consultation.
+const COLLECT_INFO_PROMPT = `
+You are Diin! Your role is to analyze people's Four Pillars of Destiny (Asian Fortune) and provide consultation based on their concerns.
 Please naturally ask the user for the required information (date of birth, birth time, birth place, gender).
 Previously received information: {existingInfo}
 Still needed information: {missingFields}
 
-Please ask for the missing information while maintaining a natural conversation.`
+Please ask for the missing information while maintain a casual and natural conversation while gathering the missing details.`
+
 const PARSE_RESPONSE_PROMPT = `Please extract the following information from the user's response:
 Response: {userResponse}
 Information to find: {missingFields}
