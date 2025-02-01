@@ -52,6 +52,7 @@ Please include the following in your response without numbering, in natural sent
 - Basic personality analysis based on the Four Pillars
 - Interpretation of the concern based on other information and personality traits
 - Advice and solutions
+- When using terms related to fortune-telling, Chinese characters must be used
 Please keep the response short, concise, and in plain text format.
 Write in simple sentences without HTML or styling.`
 

@@ -14,21 +14,17 @@ export default async function handler(
     return res.status(403).json({ error: 'Forbidden: Unauthorized' })
   }
   const username = process.env.TWITTER_USERNAME!
-  const password = process.env.TWITTER_PASSWORD!
-  const email = process.env.TWITTER_EMAIL!
-  const twoFactorSecret = process.env.TWITTER_2FA_SECRET!
-  const accessToken = process.env.TWITTER_ACCESS_TOKEN!
-  const accessSecret = process.env.TWITTER_ACCESS_TOKEN_SECRET!
-  const appKey = process.env.TWITTER_API_KEY!
-  const appSecret = process.env.TWITTER_API_SECRET_KEY!
-  console.log('username : ', username)
-  console.log('password : ', password)
-  console.log('email : ', email)
-  console.log('accessToken : ', accessToken)
-  console.log('accessSecret : ', accessSecret)
+  // const password = process.env.TWITTER_PASSWORD!
+  // const email = process.env.TWITTER_EMAIL!
+  // const twoFactorSecret = process.env.TWITTER_2FA_SECRET!
+  // const accessToken = process.env.TWITTER_ACCESS_TOKEN!
+  // const accessSecret = process.env.TWITTER_ACCESS_TOKEN_SECRET!
+  // const appKey = process.env.TWITTER_API_KEY!
+  // const appSecret = process.env.TWITTER_API_SECRET_KEY!
+
   const scraper = new Scraper()
   const cookies = JSON.parse(process.env.TWITTER_COOKIES!)
-  console.log('cookies : ', cookies)
+
   const cookieStrings = cookies.map(
     (cookie: any) =>
       `${cookie.key}=${cookie.value}; Domain=${cookie.domain}; Path=${
@@ -99,7 +95,7 @@ async function sendSplitTweets(
   assistantMessage: string,
   replyToTweetId: string,
 ): Promise<{ status: number }> {
-  const MAX_LENGTH = 150
+  const MAX_LENGTH = 200
   const messages = []
 
   // Split into sentence units (based on periods, exclamation marks, question marks)
