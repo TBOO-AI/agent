@@ -14,8 +14,11 @@ export default async function handler(
     return res.status(403).json({ error: 'Forbidden: Unauthorized' })
   }
   const username = process.env.TWITTER_USERNAME!
+  const password = process.env.TWITTER_PASSWORD!
+  console.log('username : ', username)
+  console.log('password : ', password)
   const scraper = new Scraper()
-  await scraper.login(username, process.env.TWITTER_PASSWORD!)
+  await scraper.login(username, password)
 
   const isLoggedIn = await scraper.isLoggedIn()
   console.log('isLoggedIn : ', isLoggedIn)
