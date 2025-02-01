@@ -15,10 +15,33 @@ export default async function handler(
   }
   const username = process.env.TWITTER_USERNAME!
   const password = process.env.TWITTER_PASSWORD!
+  const email = process.env.TWITTER_EMAIL!
+  const twoFactorSecret = process.env.TWITTER_2FA_SECRET!
+  const accessToken = process.env.TWITTER_ACCESS_TOKEN!
+  const accessSecret = process.env.TWITTER_ACCESS_TOKEN_SECRET!
+  const appKey = process.env.TWITTER_API_KEY!
+  const appSecret = process.env.TWITTER_API_SECRET_KEY!
   console.log('username : ', username)
   console.log('password : ', password)
+  console.log('email : ', email)
+  console.log('accessToken : ', accessToken)
+  console.log('accessSecret : ', accessSecret)
   const scraper = new Scraper()
-  await scraper.login(username, password)
+  const cookies = JSON.parse(process.env.TWITTER_COOKIES!)
+  console.log('cookies : ', cookies)
+  const cookieStrings = cookies.map(
+    (cookie: any) =>
+      `${cookie.key}=${cookie.value}; Domain=${cookie.domain}; Path=${
+        cookie.path
+      }; ${cookie.secure ? 'Secure' : ''}; ${
+        cookie.httpOnly ? 'HttpOnly' : ''
+      }; SameSite=${cookie.sameSite || 'Lax'}`,
+  )
+  console.log('cookieStrings : ', cookieStrings)
+  await scraper.setCookies(cookieStrings)
+
+  // await scraper.login(username, password, email, twoFactorSecret, appKey, appSecret, accessToken, accessSecret)
+  // await scraper.login(username, password, email)
 
   const isLoggedIn = await scraper.isLoggedIn()
   console.log('isLoggedIn : ', isLoggedIn)
