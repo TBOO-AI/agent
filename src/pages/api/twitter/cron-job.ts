@@ -95,7 +95,7 @@ async function sendSplitTweets(
   assistantMessage: string,
   replyToTweetId: string,
 ): Promise<{ status: number }> {
-  const MAX_LENGTH = 200
+  const MAX_LENGTH = 250
   const messages = []
 
   // Split into sentence units (based on periods, exclamation marks, question marks)
