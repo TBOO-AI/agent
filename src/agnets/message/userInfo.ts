@@ -22,7 +22,7 @@ Response: {userResponse}
 Information to find: {missingFields}
 
 The following various formats are also accepted:
-- Birth date: "1990-01-01", "90-01-01", "900101" etc.
+- Birth date: "1990-01-01", "January 1, 1890", "20010101" etc.
 - Time: "09:30", "9:30 AM", "9:30 in the morning" etc.
 - Location: "Seoul", "Gangnam-gu, Seoul", "Gangnam" etc.
 - Gender: please output only as "male" or "female"
@@ -35,6 +35,7 @@ Please output in JSON format. Example:
   "gender": "male"
 }}
 
+- The date of birth must be extracted in the same format as YYYY-MM-DD.
 - Only output 00:00 for birth time if the user explicitly states they don't know the exact time.
 - Don't collect data that the user hasn't provided in their response.
 - Make sure to exclude any information that couldn't be found.`

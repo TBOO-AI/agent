@@ -43,7 +43,7 @@ export default async function handler(
   console.log('isLoggedIn : ', isLoggedIn)
   const results = await scraper.fetchSearchTweets(
     username,
-    20,
+    30,
     SearchMode.Latest,
   )
 

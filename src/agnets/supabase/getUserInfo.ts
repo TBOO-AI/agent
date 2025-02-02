@@ -4,7 +4,12 @@ import { supabase } from '@/configs/supabase'
 
 const isSajuComplete = (saju: any) => {
   try {
-    return saju.birth_date && saju.birth_time && saju.birth_place && saju.gender
+    return (
+      saju.year_branch &&
+      saju.month_branch &&
+      saju.day_branch &&
+      saju.hour_branch
+    )
   } catch (error) {
     return false
   }
