@@ -1,4 +1,4 @@
-import { MessageType } from '@/agnets/types'
+import { MessageType } from '@/agents/types'
 import { supabase } from '@/configs/supabase'
 
 const createMessages = async (messages: MessageType[]) => {

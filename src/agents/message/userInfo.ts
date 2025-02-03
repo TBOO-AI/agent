@@ -4,9 +4,9 @@ import {
 } from '@langchain/core/output_parsers'
 import { ChatPromptTemplate } from '@langchain/core/prompts'
 
-import { model } from '@/agnets/helper'
-import { SajuType } from '@/agnets/types'
-import { getMissingFields, getSajuCalendar } from '@/agnets/utils'
+import { model } from '@/agents/helper'
+import { SajuType } from '@/agents/types'
+import { getMissingFields, getSajuCalendar } from '@/agents/utils'
 import { supabase } from '@/configs/supabase'
 
 const COLLECT_INFO_PROMPT = `

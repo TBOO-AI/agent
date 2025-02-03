@@ -1,4 +1,4 @@
-import { SajuType } from '@/agnets/types'
+import { SajuType } from '@/agents/types'
 
 const getSajuCalendar = async (userInfo: SajuType) => {
   const { birth_date, birth_time, gender } = userInfo

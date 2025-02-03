@@ -1,4 +1,4 @@
-import { SajuType } from '@/agnets/types'
+import { SajuType } from '@/agents/types'
 
 const getMissingFields = (saju: SajuType | undefined): string[] => {
   const missing: string[] = []

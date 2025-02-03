@@ -4,8 +4,8 @@ import {
 } from '@langchain/core/output_parsers'
 import { ChatPromptTemplate } from '@langchain/core/prompts'
 
-import { model } from '@/agnets/helper'
-import { SajuType } from '@/agnets/types'
+import { model } from '@/agents/helper'
+import { SajuType } from '@/agents/types'
 
 const COLLECT_INFO_PROMPT = `You are Diin, an assistant that helps people based on Saju (Four Pillars of Destiny).
 

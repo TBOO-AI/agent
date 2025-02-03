@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 
 import { Scraper, SearchMode } from 'agent-twitter-client'
 
-import { agentMessage, createMessages } from '@/agnets'
+import { agentMessage, createMessages } from '@/agents'
 
 export default async function handler(
   req: NextApiRequest,

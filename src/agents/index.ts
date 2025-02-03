@@ -1,11 +1,11 @@
 import { Tweet } from 'agent-twitter-client'
 
-import { message } from '@/agnets/message'
+import { message } from '@/agents/message'
 import {
   createMessages,
   getUserInfo,
   isMessageReplied,
-} from '@/agnets/supabase'
+} from '@/agents/supabase'
 
 const agentMessage = async (tweet: Tweet) => {
   const userMessage = tweet.text?.replace('@tboo_diin', '')

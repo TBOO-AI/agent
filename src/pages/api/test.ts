@@ -1,7 +1,7 @@
 //@delete:file
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-import { fortuneTelling } from '@/agnets/message/fortuneTelling'
+import { fortuneTelling } from '@/agents/message/fortuneTelling'
 
 export default async function test(req: NextApiRequest, res: NextApiResponse) {
   const data = req.body
